@@ -3,6 +3,7 @@ package com.example.test;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -10,9 +11,14 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ExampleTest {
 
+    @BeforeAll
+    static void setUp() {
+        Configuration.headless = true;
+        Configuration.timeout = 6000;
+    }
+
     @Test
     void testCanSignIn() {
-        Configuration.timeout = 6000;
         Selenide.open("https://angular.realworld.io/");
         $(By.xpath("//a[normalize-space()='Sign in']")).click();
         $(By.xpath("//input[@placeholder='Email']")).setValue("max1995@gmail.com");
