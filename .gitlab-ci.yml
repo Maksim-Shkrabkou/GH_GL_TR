@@ -24,14 +24,48 @@ default:
 
 build:
   stage: build
+ # tags:
+ #   - home -> custom runner in DigitalOcean with java, chrome, Selenide etc. and we run our CI there all became faster
+ # (2 min -> few seconds) because all set up was made before run CI
   script:
     - ./gradlew assemble
 
 ui-tests:
   stage: tests
+  # tags:
+  #   - home -> custom runner in DigitalOcean with java, chrome, Selenide etc. and we run our CI there all became faster
+  # (2 min -> few seconds) because all set up was made before run CI
   script:
     - ./gradlew test allureReport
   artifacts:
     name: "allure report"
     paths:
       - ./build/reports/allure-report/
+
+
+
+# Parallel jobs on stage
+
+#ui-tests-chrome:
+  #stage: tests
+  # tags:
+  #   - home -> custom runner in DigitalOcean with java, chrome, Selenide etc. and we run our CI there all became faster
+  # (2 min -> few seconds) because all set up was made before run CI
+  # script:
+  #  - ./gradlew test allureReport
+  #artifacts:
+   # name: "allure report"
+    #paths:
+      # - ./build/reports/allure-report/
+
+# ui-tests-firefox:
+  # stage: tests
+  # tags:
+  #   - home -> custom runner in DigitalOcean with java, chrome, Selenide etc. and we run our CI there all became faster
+  # (2 min -> few seconds) because all set up was made before run CI
+  # script:
+    # - ./gradlew test allureReport
+  # artifacts:
+    # name: "allure report"
+    # paths:
+      # - ./build/reports/allure-report/
