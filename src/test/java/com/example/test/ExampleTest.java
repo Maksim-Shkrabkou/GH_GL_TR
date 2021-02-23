@@ -13,8 +13,9 @@ public class ExampleTest {
 
     @BeforeAll
     static void setUp() {
-        Configuration.headless = true;
+        // Configuration.headless = true;
         Configuration.timeout = 6000;
+        Configuration.browser = "com.example.test.ChromeWebdriverProvider";
         // Configuration.remote = "http://localhost:4444/wd/hub";
     }
 
